@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState, useRef } from 'react';
+import './Stopwatch.css';
 
 function Stopwatch() {
 
@@ -23,10 +24,12 @@ function Stopwatch() {
 
     secondsElapsed = (now - startTime.current) / 1000;
   return (
-    <section>
-        <h1>{secondsElapsed.toFixed(3)}</h1>
-        <button onClick={startStopwatch}>Start</button>
-        <button onClick={stopStopwatch}>Stop</button>
+    <section className='stopwatch'>
+        <h1 lassName='watch'>{secondsElapsed.toFixed(3)}</h1>
+        <div className='Buttons'>
+            <button className='start' onClick={startStopwatch}>Start</button>
+            <button className='stop' onClick={stopStopwatch}>Stop</button>
+        </div>
     </section>
   );
 }
