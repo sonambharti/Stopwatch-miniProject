@@ -51,3 +51,14 @@ button{
 #lap{
     background-color: yellow;
 }
+.lap_div{
+    display: flex;
+    width: 110vw;
+    justify-content: center;
+    align-items: center;
+}
+article{
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+}

@@ -69,12 +69,12 @@ function Stopwatch() {
             
         </div>
     </section>
-    {laps?.length ? <article>
+    {laps?.length ? <div className="lap_div"><article>
         <h2>Laps</h2>
         {laps.map((lap) => (
             <p key={lap}>{lap}</p>
         ))}
-    </article>:null}
+    </article></div>:null}
     </div>
   );
 }
