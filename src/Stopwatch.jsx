@@ -9,6 +9,7 @@ function Stopwatch() {
     const [now, setNow] = useState(null);
     const [stop, setStop] = useState(null);
     const [laps, setLaps] = useState([]);
+    const [counter, setCount] = useState(0);
 
     let secondsElapsed = 0;
 
@@ -25,6 +26,7 @@ function Stopwatch() {
         setStop(Date.now());
         clearInterval(intervalRef.current);
         // console.log("In stop " + intervalRef.current);
+        setCount(1);
     }
 
     function resumeStopwatch(){
@@ -33,6 +35,7 @@ function Stopwatch() {
             setNow(Date.now());
         }, 10);
         // console.log("In resume " + intervalRef.current);
+        setCount(0);
     }
 
 
@@ -48,13 +51,20 @@ function Stopwatch() {
         <h1 className='watch'>{secondsElapsed.toFixed(3)}</h1>
         <div className='Buttons'>
             <div>
-                {startTime.current ? (
+                {startTime.current ? (counter == 1) ? (
                     <button id='resume' onClick={ (e) => {
                         e.preventDefault();
                         resumeStopwatch();
                     }}>
                        Resume </button>
                 ) : (
+                    <button id='stop' onClick={ (e) => {
+                        e.preventDefault();
+                        stopStopwatch();
+                    }}>
+                       Stop </button>
+                ) :
+                    (
                     <button id='start' onClick={ (e) => {
                         e.preventDefault();
                         startStopwatch();
@@ -62,9 +72,10 @@ function Stopwatch() {
                        Start </button>
                 )
                 }
+            
             </div>
         
-            <button id='stop' onClick={stopStopwatch} > Stop </button>
+            {/* <button id='stop' onClick={stopStopwatch} > Stop </button> */}
             <button id='lap' onClick={trackLap} > Lap </button>
             
         </div>
