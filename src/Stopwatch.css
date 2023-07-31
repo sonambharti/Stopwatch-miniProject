@@ -1,7 +1,53 @@
-.watch {
-    align-self: center;
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    
 }
+
+.watch{
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10em;
+}
+
 .Buttons {
     display: flex;
     justify-content: center;
+    align-items: center;
+    height: 75px;
+    width: 100vw;
+}
+button{
+    text-decoration: none;
+    border: none;
+    height: 3em;
+    width: 5em;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 2em;
+    font-weight: 4em;
+    margin: 10px;
+    
+}
+
+#start{
+    background-color: green;
+}
+
+#stop{
+    background-color: rgb(141, 7, 7);
+}
+
+#resume{
+    background-color: aqua;
+}
+
+#lap{
+    background-color: yellow;
 }
