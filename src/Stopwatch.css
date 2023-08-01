@@ -1,14 +1,6 @@
 
 .stopwatch {
     
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-    
-}
-
-.main-body {
     display: grid;
     /* grid-template-columns: repeat(3, 1fr); */
     grid-template-areas: 
@@ -17,6 +9,8 @@
     "laps laps refresh";
     justify-content: center;
     align-items: center;
+    height: 100%;
+    width: 100%;
 }
 
 .timer{
@@ -83,13 +77,25 @@ button{
     display: flex;
     flex-direction: column;
     align-self: flex-start;
-    padding-top: 10em;
-    animation: spinning-logocat 2s;
+    padding-top: 10em;  
     
 }
 
-@keyframes spinning-logocat {50%{transform:rotateY(180deg);}}
+.refresh :active {
+    color: aqua;
+    animation: rotate 0.3s linear;
+}
 
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(180deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
 
-  
 

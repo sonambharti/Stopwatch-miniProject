@@ -13,6 +13,7 @@ function Stopwatch() {
     const [counter, setCount] = useState(0);
     const [reset, setReset] = useState(false);
 
+
     let secondsElapsed = 0;
 
 
@@ -45,7 +46,8 @@ function Stopwatch() {
         setLaps([...laps, secondsElapsed]);
     }
 
-    function resetStopwatch() {
+    async function resetStopwatch() {
+        await new Promise((resolve) => setTimeout(resolve, 100));
         setReset(true);
         setLaps([]);
         clearInterval(intervalRef.current);
@@ -55,15 +57,18 @@ function Stopwatch() {
         startTime.current = null;
     }
 
+
     secondsElapsed = (now - startTime.current) / 1000;
   return (
     <div className='stopwatch'>
         
-        <div className='main-body'>
-        
-        <div className='refresh'><RefreshIcon id='refresh' onClick={resetStopwatch} /></div>
+            <div className='refresh'>
+                <RefreshIcon id='refresh-icon' onClick={resetStopwatch} />
+            </div>
 
-            <div className='timer'><h1 className='watch'>{secondsElapsed.toFixed(3)}</h1></div>
+            <div className='timer'>
+                <h1 className='watch'>{secondsElapsed.toFixed(3)}</h1>
+            </div>
             
             <div className='Buttons'>
                 <div className='Func-button'>
@@ -102,7 +107,7 @@ function Stopwatch() {
                     <p key={lap}>{lap}</p>
                 ))}
             </article>:null}</div>
-        </div>
+        
     </div>
   );
 }
