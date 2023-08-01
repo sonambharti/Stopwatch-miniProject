@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState, useRef } from 'react';
 import './Stopwatch.css';
+import RefreshIcon from '@mui/icons-material/Refresh';
 
 function Stopwatch() {
 
@@ -10,6 +11,7 @@ function Stopwatch() {
     const [stop, setStop] = useState(null);
     const [laps, setLaps] = useState([]);
     const [counter, setCount] = useState(0);
+    const [reset, setReset] = useState(false);
 
     let secondsElapsed = 0;
 
@@ -43,51 +45,70 @@ function Stopwatch() {
         setLaps([...laps, secondsElapsed]);
     }
 
+    function resetStopwatch() {
+        setReset(true);
+        setLaps([]);
+        clearInterval(intervalRef.current);
+        setNow(null);
+        setStop(null);
+        setCount(0);
+        startTime.current = null;
+    }
 
     secondsElapsed = (now - startTime.current) / 1000;
   return (
     <div className='stopwatch'>
-    <section>
-        <h1 className='watch'>{secondsElapsed.toFixed(3)}</h1>
-        <div className='Buttons'>
-            <div>
-                {startTime.current ? (counter == 1) ? (
-                    <button id='resume' onClick={ (e) => {
-                        e.preventDefault();
-                        resumeStopwatch();
-                    }}>
-                       Resume </button>
-                ) : (
-                    <button id='stop' onClick={ (e) => {
-                        e.preventDefault();
-                        stopStopwatch();
-                    }}>
-                       Stop </button>
-                ) :
-                    (
-                    <button id='start' onClick={ (e) => {
-                        e.preventDefault();
-                        startStopwatch();
-                    }}>
-                       Start </button>
-                )
-                }
-            
-            </div>
         
-            {/* <button id='stop' onClick={stopStopwatch} > Stop </button> */}
-            <button id='lap' onClick={trackLap} > Lap </button>
+        <div className='main-body'>
+        
+        <div className='refresh'><RefreshIcon id='refresh' onClick={resetStopwatch} /></div>
+
+            <div className='timer'><h1 className='watch'>{secondsElapsed.toFixed(3)}</h1></div>
             
+            <div className='Buttons'>
+                <div className='Func-button'>
+                    {startTime.current ? (counter === 1) ? (
+                        <button id='resume' onClick={ (e) => {
+                            e.preventDefault();
+                            resumeStopwatch();
+                        }}>
+                        Resume </button>
+                    ) : (
+                        <button id='stop' onClick={ (e) => {
+                            e.preventDefault();
+                            stopStopwatch();
+                        }}>
+                        Stop </button>
+                    ) :
+                        (
+                        <button id='start' onClick={ (e) => {
+                            e.preventDefault();
+                            startStopwatch();
+                        }}>
+                        Start </button>
+                    )
+                    }
+                
+                </div>
+            
+                {/* <button id='stop' onClick={stopStopwatch} > Stop </button> */}
+                <button id='lap' onClick={trackLap} > Lap </button>
+                
+            </div>
+    
+            <div className="lap_div"> {laps?.length ? <article>
+                <h2>Laps</h2>
+                {laps.map((lap) => (
+                    <p key={lap}>{lap}</p>
+                ))}
+            </article>:null}</div>
         </div>
-    </section>
-    {laps?.length ? <div className="lap_div"><article>
-        <h2>Laps</h2>
-        {laps.map((lap) => (
-            <p key={lap}>{lap}</p>
-        ))}
-    </article></div>:null}
     </div>
   );
 }
 
 export default Stopwatch;
+
+// ngrok config add-authtoken 2TNTcOve26wABZZyrNgCVPYvW4x_fJEfVyVcBQmgxXqn2sHy
+
+

@@ -1,29 +1,48 @@
 
-body {
-    display: flex;
+.stopwatch {
+    
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 100%;
     width: 100%;
     
+}
+
+.main-body {
+    display: grid;
+    /* grid-template-columns: repeat(3, 1fr); */
+    grid-template-areas: 
+    "timer timer refresh" 
+    "buttons buttons refresh" 
+    "laps laps refresh";
+    justify-content: center;
+    align-items: center;
+}
+
+.timer{
+    grid-area: timer;
 }
 
 .watch{
     margin: 0px;
     padding: 0px;
-    display: flex;
+    /* display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; */
     font-size: 10em;
 }
 
 .Buttons {
+    grid-area: buttons;
     display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
-    height: 75px;
-    width: 100vw;
+    /* height: 75px;
+    width: 100vw; */
 }
+
+
 button{
     text-decoration: none;
     border: none;
@@ -51,14 +70,26 @@ button{
 #lap{
     background-color: yellow;
 }
+
 .lap_div{
+    grid-area: laps;
     display: flex;
-    width: 110vw;
     justify-content: center;
     align-items: center;
 }
-article{
-    /* display: flex; */
-    justify-content: center;
-    align-items: center;
+
+.refresh {
+    grid-area: refresh;
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    padding-top: 10em;
+    animation: spinning-logocat 2s;
+    
 }
+
+@keyframes spinning-logocat {50%{transform:rotateY(180deg);}}
+
+
+  
+
